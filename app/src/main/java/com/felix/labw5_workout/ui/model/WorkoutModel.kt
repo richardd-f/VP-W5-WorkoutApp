@@ -1,6 +1,5 @@
 package com.felix.labw5_workout.ui.model
 
-import androidx.compose.ui.text.style.TextAlign
 import com.felix.labw5_workout.R
 
 class WorkoutModel (

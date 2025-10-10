@@ -12,18 +12,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.felix.labw5_workout.ui.theme.LabW5_WorkoutTheme
 import com.felix.labw5_workout.ui.viewModel.HomePageViewModel
+import com.felix.labw5_workout.ui.viewModel.HomePageViewModelFactory
 import com.felix.labw5_workout.ui.views.Homepage
 
 class MainActivity : ComponentActivity() {
-    @SuppressLint("ViewModelConstructorInComposable")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             LabW5_WorkoutTheme {
-                Homepage(HomePageViewModel(2))
+                val factory = HomePageViewModelFactory(1)
+                val viewModel:HomePageViewModel = viewModel(factory = factory)
+                Homepage(viewModel)
             }
         }
     }

@@ -1,9 +1,5 @@
 package com.felix.labw5_workout.ui.model
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import java.time.LocalDate
 import java.time.Period
 

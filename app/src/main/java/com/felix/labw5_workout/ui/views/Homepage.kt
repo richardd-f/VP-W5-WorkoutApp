@@ -183,9 +183,9 @@ fun Homepage(viewModel: HomePageViewModel){
     }
 }
 
-@SuppressLint("ViewModelConstructorInComposable")
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun PreviewHomepage(){
-    Homepage(HomePageViewModel(1))
-}
+//@SuppressLint("ViewModelConstructorInComposable")
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun PreviewHomepage(){
+//    Homepage(HomePageViewModel())
+//}

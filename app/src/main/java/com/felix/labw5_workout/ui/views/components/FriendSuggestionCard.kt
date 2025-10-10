@@ -26,9 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.felix.labw5_workout.data.DummyUsersData
 import com.felix.labw5_workout.ui.model.UserModel
-import com.felix.labw5_workout.ui.viewModel.HomePageViewModel
 
 @Composable
 fun FriendSuggestionCard(
