@@ -1,4 +1,4 @@
-package com.felix.labw5_workout.ui.views.components
+package com.felix.labw5_workout.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.felix.labw5_workout.ui.model.UserModel
+import com.felix.labw5_workout.model.UserModel
 
 @Composable
 fun FriendSuggestionCard(

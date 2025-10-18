@@ -1,6 +1,5 @@
-package com.felix.labw5_workout.ui.views
+package com.felix.labw5_workout.ui.screens.profile
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -33,16 +32,33 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.felix.labw5_workout.R
-import com.felix.labw5_workout.ui.viewModel.HomePageViewModel
-import com.felix.labw5_workout.ui.views.components.FriendSuggestionCard
-import com.felix.labw5_workout.ui.views.components.WorkoutCard
+import com.felix.labw5_workout.model.UserModel
+import com.felix.labw5_workout.ui.components.FriendSuggestionCard
+import com.felix.labw5_workout.ui.components.WorkoutCard
 
 
 @Composable
-fun Homepage(viewModel: HomePageViewModel){
+fun ProfileScreen(
+    navController: NavController,
+    viewModel: ProfileViewModel = viewModel()
+){
     val loggedAccount by viewModel.loggedAccount.collectAsState()
+    ProfileScreenContent(
+        loggedAccount = loggedAccount!!,
+        allUserExceptMe = viewModel.getAllUserExceptMe(),
+        isFriend = {viewModel.isFriend(it)}
+    )
+}
 
+@Composable
+fun ProfileScreenContent(
+    loggedAccount: UserModel,
+    allUserExceptMe: List<UserModel>,
+    isFriend: (Int) -> Boolean
+){
     // Profile Information
     Column (
         modifier = Modifier
@@ -146,10 +162,10 @@ fun Homepage(viewModel: HomePageViewModel){
         )
         LazyRow {
             items(
-                items = viewModel.getAllUserExceptMe(),
+                items = allUserExceptMe,
                 key = { user -> "${user.id}-${loggedAccount?.friends?.size}" }
             ) { user ->
-                val isAlreadyFriend = viewModel.isFriend(user.id)
+                val isAlreadyFriend = { loggedAccount.friends.any{ it.id == user.id } }
 
                 FriendSuggestionCard(
                     user = user,
@@ -183,9 +199,8 @@ fun Homepage(viewModel: HomePageViewModel){
     }
 }
 
-//@SuppressLint("ViewModelConstructorInComposable")
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun PreviewHomepage(){
-//    Homepage(HomePageViewModel())
-//}
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun ProfileScreenPreview(){
+    ProfileScreenContent()
+}

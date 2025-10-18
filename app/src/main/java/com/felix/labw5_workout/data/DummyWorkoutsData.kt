@@ -1,6 +1,6 @@
 package com.felix.labw5_workout.data
 
-import com.felix.labw5_workout.ui.model.WorkoutModel
+import com.felix.labw5_workout.model.WorkoutModel
 
 class DummyWorkoutsData {
     val workouts: List<WorkoutModel> = listOf(

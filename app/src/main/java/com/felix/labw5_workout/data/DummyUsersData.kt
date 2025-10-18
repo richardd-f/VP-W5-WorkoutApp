@@ -1,6 +1,6 @@
 package com.felix.labw5_workout.data
 
-import com.felix.labw5_workout.ui.model.UserModel
+import com.felix.labw5_workout.model.UserModel
 import java.time.LocalDate
 
 class DummyUsersData {

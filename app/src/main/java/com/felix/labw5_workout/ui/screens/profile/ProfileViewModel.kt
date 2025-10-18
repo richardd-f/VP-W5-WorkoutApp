@@ -1,16 +1,17 @@
-package com.felix.labw5_workout.ui.viewModel
+package com.felix.labw5_workout.ui.screens.profile
 
 import androidx.lifecycle.ViewModel
 import com.felix.labw5_workout.data.DummyUsersData
 import com.felix.labw5_workout.data.DummyWorkoutsData
-import com.felix.labw5_workout.ui.model.UserModel
-import com.felix.labw5_workout.ui.model.WorkoutModel
+import com.felix.labw5_workout.model.UserModel
+import com.felix.labw5_workout.model.WorkoutModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class HomePageViewModel(userId:Int) : ViewModel() {
+class ProfileViewModel() : ViewModel() {
+    val userId: Int = 1
     val allUser: List<UserModel> = DummyUsersData().users
     val allWorkout: List<WorkoutModel> = DummyWorkoutsData().workouts
 

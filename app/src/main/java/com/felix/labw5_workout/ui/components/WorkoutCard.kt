@@ -1,4 +1,4 @@
-package com.felix.labw5_workout.ui.views.components
+package com.felix.labw5_workout.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -31,7 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.felix.labw5_workout.ui.model.WorkoutModel
+import com.felix.labw5_workout.model.WorkoutModel
 
 @Composable
 fun WorkoutCard(

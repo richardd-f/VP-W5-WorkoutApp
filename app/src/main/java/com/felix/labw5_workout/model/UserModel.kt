@@ -1,4 +1,4 @@
-package com.felix.labw5_workout.ui.model
+package com.felix.labw5_workout.model
 
 import java.time.LocalDate
 import java.time.Period
