@@ -29,6 +29,9 @@ class MainViewModel() : ViewModel() {
     fun getAllMyFriends(): List<UserModel> {
         return _loggedAccount.value?.friends ?: emptyList()
     }
+    fun getAllWorkouts(): List<WorkoutModel> {
+        return _loggedAccount.value?.workouts ?: emptyList()
+    }
 
     fun addFriend(friendId: Int) {
         val friend = allUser.find { it.id == friendId } ?: return

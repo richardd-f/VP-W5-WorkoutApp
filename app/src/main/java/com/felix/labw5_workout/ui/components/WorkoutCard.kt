@@ -38,7 +38,8 @@ fun WorkoutCard(
     workout: WorkoutModel,
     isAlreadyAdded: Boolean,
     onButtonClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    showButton:Boolean = true
 ) {
     Card(
         modifier = modifier
@@ -85,6 +86,12 @@ fun WorkoutCard(
                     )
                 )
                 Text(
+                    text = "${workout.calories} Cals",
+                    style = MaterialTheme.typography.titleMedium.copy(
+                        color = Color.Black
+                    )
+                )
+                Text(
                     text = workout.category.text,
                     style = MaterialTheme.typography.bodyMedium.copy(
                         color = Color.Gray
@@ -93,24 +100,26 @@ fun WorkoutCard(
             }
 
             // Add Button
-            IconButton(
-                onClick = onButtonClick,
-                modifier = Modifier
-                    .weight(0.15f)
-                    .aspectRatio(1f)
-                    .background(
-                        color = if(!isAlreadyAdded) Color(0xFF42A5F5)
+            if(showButton){
+                IconButton(
+                    onClick = onButtonClick,
+                    modifier = Modifier
+                        .weight(0.15f)
+                        .aspectRatio(1f)
+                        .background(
+                            color = if (!isAlreadyAdded) Color(0xFF42A5F5)
                             else Color.Red,
-                        shape = CircleShape
-                    ),
-            ) {
-                Icon(
-                    imageVector = if(!isAlreadyAdded) Icons.Default.Add
-                        else Icons.Default.Remove,
-                    contentDescription = "Add workout",
-                    tint = Color.White,
-                    modifier = Modifier.size(30.dp)
-                )
+                            shape = CircleShape
+                        ),
+                ) {
+                    Icon(
+                        imageVector = if(!isAlreadyAdded) Icons.Default.Add
+                            else Icons.Default.Remove,
+                        contentDescription = "Add workout",
+                        tint = Color.White,
+                        modifier = Modifier.size(30.dp)
+                    )
+                }
             }
         }
     }

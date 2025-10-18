@@ -4,7 +4,8 @@ import com.felix.labw5_workout.R
 
 class WorkoutModel (
     val title: String,
-    val category: Category
+    val category: Category,
+    val calories:Int
 ) {
     enum class Category (val text: String){
         Flexibility(text= "Flexibility"),

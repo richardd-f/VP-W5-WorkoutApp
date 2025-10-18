@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -57,11 +58,11 @@ fun ProfileScreen(
     val loggedAccount by viewModel.loggedAccount.collectAsState()
     ProfileScreenContent(
         loggedAccount = loggedAccount!!,
-        allUserExceptMe = viewModel.getAllUserExceptMe(),
         allMyFriends = viewModel.getAllMyFriends(),
         isFriend = {viewModel.isFriend(it)},
         onAddFriend = {viewModel.addFriend(it)},
         allWorkouts = viewModel.allWorkout,
+        addedWorkouts = viewModel.getAllWorkouts(),
         isWorkoutAdded = { viewModel.isWorkoutAdded(it) },
         onClickWorkoutBtn = { title, isAlreadyAdded -> viewModel.clickWorkoutBtn(title, isAlreadyAdded) },
         navController = navController
@@ -71,11 +72,11 @@ fun ProfileScreen(
 @Composable
 fun ProfileScreenContent(
     loggedAccount: UserModel,
-    allUserExceptMe: List<UserModel>,
     allMyFriends: List<UserModel>,
     isFriend: (Int) -> Boolean,
     onAddFriend: (Int) ->  Unit,
     allWorkouts: List<WorkoutModel>,
+    addedWorkouts: List<WorkoutModel>,
     isWorkoutAdded: (String)->Boolean,
     onClickWorkoutBtn: (String, Boolean)->Unit,
     navController: NavController
@@ -88,6 +89,7 @@ fun ProfileScreenContent(
         // Profile Information
         Column (
             modifier = Modifier
+                .fillMaxHeight()
                 .background(Color.White)
                 .padding(top = 20.dp)
                 .padding(horizontal = 20.dp)
@@ -229,21 +231,37 @@ fun ProfileScreenContent(
             Text(
                 modifier = Modifier
                     .padding(vertical = 10.dp),
-                text = "Workout List",
+                text = "Recent Workouts",
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
-            LazyColumn {
-                items(
-                    items = allWorkouts,
-                    key = { workout -> "${workout.title}-${loggedAccount?.workouts?.size}" }
-                ){ workout ->
-                    val isWorkoutAlreadyAdded = isWorkoutAdded(workout.title)
-                    WorkoutCard(
-                        workout = workout,
-                        onButtonClick = {onClickWorkoutBtn(workout.title, isWorkoutAlreadyAdded)},
-                        isAlreadyAdded = isWorkoutAlreadyAdded
+            if(addedWorkouts.isNotEmpty()){
+                LazyColumn {
+                    items(
+                        items = addedWorkouts,
+                        key = { workout -> "${workout.title}-${loggedAccount?.workouts?.size}" }
+                    ){ workout ->
+                        val isWorkoutAlreadyAdded = isWorkoutAdded(workout.title)
+                        WorkoutCard(
+                            workout = workout,
+                            onButtonClick = {onClickWorkoutBtn(workout.title, isWorkoutAlreadyAdded)},
+                            isAlreadyAdded = isWorkoutAlreadyAdded,
+                            showButton = false
+                        )
+                    }
+                }
+            }else{
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(100.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "No Workouts Yet",
+                        color = Color.Gray,
+                        textAlign = TextAlign.Center,
                     )
                 }
             }
@@ -258,13 +276,13 @@ fun ProfileScreenContent(
 fun ProfileScreenPreview(){
     ProfileScreenContent(
         loggedAccount = DummyUsersData().users[0],
-        allUserExceptMe = DummyUsersData().users,
         allMyFriends = emptyList(),
         isFriend = {false},
         onAddFriend = {},
         allWorkouts = DummyWorkoutsData().workouts,
+        addedWorkouts = emptyList(),
         isWorkoutAdded = { false },
         onClickWorkoutBtn = { _, _ -> },
-        navController = NavController(LocalContext.current)
+        navController = NavController(LocalContext.current),
     )
 }
