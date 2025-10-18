@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -30,6 +31,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -140,6 +142,7 @@ fun WorkoutScreenContent(
         // Profile Information
         Column (
             modifier = Modifier
+                .fillMaxHeight()
                 .background(Color.White)
                 .padding(top = 20.dp)
                 .padding(horizontal = 20.dp)
@@ -174,6 +177,7 @@ fun WorkoutScreenContent(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .fillMaxHeight()
                         .height(100.dp),
                     contentAlignment = Alignment.Center
                 ) {
@@ -202,14 +206,22 @@ fun WorkoutScreenContent(
                         value = titleDialog,
                         onValueChange = { onTitleDialogChange(it) },
                         label = { Text("Workout Title") },
-                        singleLine = true
+                        singleLine = true,
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedTextColor = Color.Black,
+                            unfocusedTextColor = Color.Black,
+                        )
                     )
 
                     OutlinedTextField(
                         value = typeDialog,
                         onValueChange = { onTypeDialogChange(it) },
                         label = { Text("Workout Type") },
-                        singleLine = true
+                        singleLine = true,
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedTextColor = Color.Black,
+                            unfocusedTextColor = Color.Black,
+                        )
                     )
 
                     OutlinedTextField(
@@ -220,7 +232,11 @@ fun WorkoutScreenContent(
                         },
                         label = { Text("Calories Burned") },
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                        singleLine = true
+                        singleLine = true,
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedTextColor = Color.Black,
+                            unfocusedTextColor = Color.Black,
+                        )
                     )
 
                     // Icon selection row
