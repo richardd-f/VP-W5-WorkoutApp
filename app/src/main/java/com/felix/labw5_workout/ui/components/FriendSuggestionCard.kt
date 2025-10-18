@@ -26,12 +26,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.felix.labw5_workout.data.DummyUsersData
 import com.felix.labw5_workout.model.UserModel
 
 @Composable
 fun FriendSuggestionCard(
     user: UserModel,
     onAddFriendClick: () -> Unit,
+    onRemoveFriendClick: () -> Unit,
     isAlreadyFriend: Boolean,
     modifier: Modifier = Modifier
 ) {
@@ -48,8 +50,7 @@ fun FriendSuggestionCard(
     Card(
         modifier = modifier
             .width(180.dp)
-            .padding(vertical = 8.dp)
-            .padding(end = 16.dp),
+            .padding(vertical = 8.dp),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color(0xFFE6F5FA)
@@ -96,18 +97,19 @@ fun FriendSuggestionCard(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Add Friend Button
+            // Add / Remove Friend Button
             Button(
-                onClick = {onAddFriendClick()},
+                onClick = {
+                    if (isAlreadyFriend) onRemoveFriendClick() else onAddFriendClick()
+                },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF55B9E1),
+                    containerColor = if (isAlreadyFriend) Color(0xFFE74C3C) else Color(0xFF55B9E1),
                     disabledContainerColor = Color.Gray
                 ),
-                shape = RoundedCornerShape(50),
-                enabled = !isAlreadyFriend
+                shape = RoundedCornerShape(50)
             ) {
                 Text(
-                    text = "Add Friend",
+                    text = if (isAlreadyFriend) "Unfriend" else "Add Friend",
                     color = Color.White,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -116,8 +118,14 @@ fun FriendSuggestionCard(
     }
 }
 
+
 @Preview(showBackground = false)
 @Composable
 fun PreviewFriendSuggestionCard(){
-//    FriendSuggestionCard(DummyUsersData().users[0])
+    FriendSuggestionCard(
+        user = DummyUsersData().users[0],
+        onAddFriendClick = {},
+        onRemoveFriendClick = {},
+        isAlreadyFriend = false,
+    )
 }

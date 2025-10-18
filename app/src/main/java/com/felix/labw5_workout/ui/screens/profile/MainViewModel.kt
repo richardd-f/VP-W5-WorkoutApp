@@ -37,6 +37,15 @@ class MainViewModel() : ViewModel() {
         }
     }
 
+    fun removeFriend(friendId: Int){
+        val friend = allUser.find { it.id == friendId } ?: return
+        _loggedAccount.update { currentAccount ->
+            currentAccount?.copy(
+                friends = currentAccount.friends - friend
+            )
+        }
+    }
+
     fun isFriend(friendId: Int): Boolean {
         return _loggedAccount.value?.friends?.any { it.id == friendId } ?: false
     }

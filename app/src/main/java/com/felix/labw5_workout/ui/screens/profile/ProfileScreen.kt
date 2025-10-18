@@ -198,7 +198,8 @@ fun ProfileScreenContent(
                     FriendSuggestionCard(
                         user = user,
                         onAddFriendClick = { onAddFriend(user.id) },
-                        isAlreadyFriend = isAlreadyFriend
+                        isAlreadyFriend = isAlreadyFriend,
+                        onRemoveFriendClick = {}
                     )
                 }
             }

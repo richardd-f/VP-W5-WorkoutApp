@@ -44,6 +44,7 @@ fun FriendScreen(
         loggedAccount = loggedAccount!!,
         isFriend = {viewModel.isFriend(it)},
         onAddFriend = {viewModel.addFriend(it)},
+        onRemoveFriend = {viewModel.removeFriend(it)}
     )
 }
 
@@ -54,6 +55,7 @@ fun FriendScreenContent(
     loggedAccount: UserModel,
     isFriend: (Int) -> Boolean,
     onAddFriend: (Int) ->  Unit,
+    onRemoveFriend: (Int) -> Unit
 
 ){
     Scaffold(
@@ -97,6 +99,7 @@ fun FriendScreenContent(
                             FriendSuggestionCard(
                                 user = user,
                                 onAddFriendClick = { onAddFriend(user.id) },
+                                onRemoveFriendClick = {onRemoveFriend(user.id)},
                                 isAlreadyFriend = isAlreadyFriend,
                                 modifier = Modifier.weight(1f)
                             )
@@ -123,5 +126,6 @@ fun FriendScreenPreview(){
         loggedAccount = DummyUsersData().users[0],
         isFriend = {false},
         onAddFriend = {},
+        onRemoveFriend = {}
     )
 }
