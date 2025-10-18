@@ -82,7 +82,7 @@ fun WorkoutScreenContent(
                 .padding(horizontal = 20.dp)
                 .padding(innerPadding)
         ) {
-            // Text "Profile"
+            // Text "Workout"
             Text(
                 modifier = Modifier
                     .padding(bottom = 18.dp),
