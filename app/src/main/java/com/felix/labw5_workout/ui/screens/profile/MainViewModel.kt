@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class ProfileViewModel() : ViewModel() {
+class MainViewModel() : ViewModel() {
     val userId: Int = 1
     val allUser: List<UserModel> = DummyUsersData().users
     val allWorkout: List<WorkoutModel> = DummyWorkoutsData().workouts

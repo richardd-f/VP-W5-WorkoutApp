@@ -45,13 +45,12 @@ import com.felix.labw5_workout.navigation.Screen
 import com.felix.labw5_workout.ui.components.BottomNavigationBar
 import com.felix.labw5_workout.ui.components.FriendSuggestionCard
 import com.felix.labw5_workout.ui.components.WorkoutCard
-import java.time.LocalDate
 
 
 @Composable
 fun ProfileScreen(
     navController: NavController,
-    viewModel: ProfileViewModel = viewModel()
+    viewModel: MainViewModel = viewModel()
 ){
     val loggedAccount by viewModel.loggedAccount.collectAsState()
     ProfileScreenContent(
