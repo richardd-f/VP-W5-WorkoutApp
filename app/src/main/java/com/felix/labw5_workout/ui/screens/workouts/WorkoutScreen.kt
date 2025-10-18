@@ -257,8 +257,6 @@ fun WorkoutScreenContent(
             confirmButton = {
                 TextButton(
                     onClick = {
-                        // Save workout logic here
-                        // Example: call viewModel.addWorkout(title)
                         onClickSaveWorkout()
                         onShowDialogChange(false)
                     }

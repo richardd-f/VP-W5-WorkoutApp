@@ -68,10 +68,11 @@ class MainViewModel() : ViewModel() {
         val title = _titleDialog.value.trim()
         val type = _typeDialog.value.trim()
         val calories = _caloriesDialog.value ?: 0
+        val icon = _iconDialog.value
 
-        if (title.isEmpty() || type.isEmpty()) return
+        if (title.isEmpty() || type.isEmpty() || icon == null) return
 
-        // Convert type string into Category enum (default to Cardio if unknown)
+        // Convert string to Category enum
         val category = when (type.lowercase()) {
             "flexibility" -> WorkoutModel.Category.Flexibility
             "cardio" -> WorkoutModel.Category.Cardio
@@ -79,7 +80,26 @@ class MainViewModel() : ViewModel() {
             "light cardio" -> WorkoutModel.Category.LightCardio
             else -> WorkoutModel.Category.Cardio
         }
+
+        // Create new workout
+        val newWorkout = WorkoutModel(
+            title = title,
+            category = category,
+            calories = calories
+        ).apply {
+            imageRes = icon
+        }
+
+        _allWorkout.update { current ->
+            (current + newWorkout).distinctBy { it.title }
+        }
+
+        _titleDialog.value = ""
+        _typeDialog.value = ""
+        _caloriesDialog.value = null
+        _iconDialog.value = null
     }
+
 
     // FRIENDS
     fun getAllUserExceptMe(): List<UserModel> {
