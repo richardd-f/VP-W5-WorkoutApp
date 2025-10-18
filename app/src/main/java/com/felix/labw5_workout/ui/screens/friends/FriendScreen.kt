@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -30,7 +29,7 @@ import com.felix.labw5_workout.model.UserModel
 import com.felix.labw5_workout.navigation.Screen
 import com.felix.labw5_workout.ui.components.BottomNavigationBar
 import com.felix.labw5_workout.ui.components.FriendSuggestionCard
-import com.felix.labw5_workout.ui.screens.profile.MainViewModel
+import com.felix.labw5_workout.ui.viewmodel.MainViewModel
 
 @Composable
 fun FriendScreen(

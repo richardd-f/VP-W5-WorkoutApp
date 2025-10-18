@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.felix.labw5_workout.ui.screens.friends.FriendScreen
-import com.felix.labw5_workout.ui.screens.profile.MainViewModel
+import com.felix.labw5_workout.ui.viewmodel.MainViewModel
 import com.felix.labw5_workout.ui.screens.profile.ProfileScreen
 import com.felix.labw5_workout.ui.screens.workouts.WorkoutScreen
 

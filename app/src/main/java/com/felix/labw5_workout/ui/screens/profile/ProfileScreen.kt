@@ -32,7 +32,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,13 +40,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.felix.labw5_workout.R
 import com.felix.labw5_workout.data.DummyUsersData
-import com.felix.labw5_workout.data.DummyWorkoutsData
 import com.felix.labw5_workout.model.UserModel
 import com.felix.labw5_workout.model.WorkoutModel
 import com.felix.labw5_workout.navigation.Screen
 import com.felix.labw5_workout.ui.components.BottomNavigationBar
 import com.felix.labw5_workout.ui.components.FriendSuggestionCard
 import com.felix.labw5_workout.ui.components.WorkoutCard
+import com.felix.labw5_workout.ui.viewmodel.MainViewModel
 
 
 @Composable

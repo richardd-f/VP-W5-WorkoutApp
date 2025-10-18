@@ -6,24 +6,18 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.People
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
@@ -47,7 +41,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.felix.labw5_workout.R
@@ -57,14 +50,13 @@ import com.felix.labw5_workout.model.UserModel
 import com.felix.labw5_workout.model.WorkoutModel
 import com.felix.labw5_workout.navigation.Screen
 import com.felix.labw5_workout.ui.components.BottomNavigationBar
-import com.felix.labw5_workout.ui.components.FriendSuggestionCard
 import com.felix.labw5_workout.ui.components.WorkoutCard
-import com.felix.labw5_workout.ui.screens.profile.MainViewModel
+import com.felix.labw5_workout.ui.viewmodel.MainViewModel
 
 @Composable
 fun WorkoutScreen(
     navController: NavController,
-    viewModel:MainViewModel = viewModel()
+    viewModel: MainViewModel = viewModel()
 ){
     WorkoutScreenContent(
         navController = navController,

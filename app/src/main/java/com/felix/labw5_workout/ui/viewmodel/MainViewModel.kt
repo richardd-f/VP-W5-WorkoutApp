@@ -1,6 +1,5 @@
-package com.felix.labw5_workout.ui.screens.profile
+package com.felix.labw5_workout.ui.viewmodel
 
-import androidx.compose.material.icons.Icons
 import androidx.lifecycle.ViewModel
 import com.felix.labw5_workout.R
 import com.felix.labw5_workout.data.DummyUsersData
@@ -13,7 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class MainViewModel() : ViewModel() {
-    val userId: Int = 1
+    val userId: Int = 2
     val allUser: List<UserModel> = DummyUsersData().users
 //    val allWorkout: List<WorkoutModel> = DummyWorkoutsData().workouts
     val icons = listOf(
