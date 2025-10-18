@@ -2,6 +2,7 @@ package com.felix.labw5_workout.ui.screens.profile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -30,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -56,6 +58,7 @@ fun ProfileScreen(
     ProfileScreenContent(
         loggedAccount = loggedAccount!!,
         allUserExceptMe = viewModel.getAllUserExceptMe(),
+        allMyFriends = viewModel.getAllMyFriends(),
         isFriend = {viewModel.isFriend(it)},
         onAddFriend = {viewModel.addFriend(it)},
         allWorkouts = viewModel.allWorkout,
@@ -69,6 +72,7 @@ fun ProfileScreen(
 fun ProfileScreenContent(
     loggedAccount: UserModel,
     allUserExceptMe: List<UserModel>,
+    allMyFriends: List<UserModel>,
     isFriend: (Int) -> Boolean,
     onAddFriend: (Int) ->  Unit,
     allWorkouts: List<WorkoutModel>,
@@ -183,23 +187,40 @@ fun ProfileScreenContent(
             Text(
                 modifier = Modifier
                     .padding(vertical = 10.dp),
-                text = "Friend Suggestion",
+                text = "Recently Added",
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
-            LazyRow {
-                items(
-                    items = allUserExceptMe,
-                    key = { user -> "${user.id}-${loggedAccount?.friends?.size}" }
-                ) { user ->
-                    val isAlreadyFriend =  isFriend(user.id)
+            if(allMyFriends.isNotEmpty()){
+                LazyRow {
+                    items(
+                        items = allMyFriends,
+                        key = { user -> "${user.id}-${loggedAccount?.friends?.size}" }
+                    ) { user ->
+                        val isAlreadyFriend =  isFriend(user.id)
 
-                    FriendSuggestionCard(
-                        user = user,
-                        onAddFriendClick = { onAddFriend(user.id) },
-                        isAlreadyFriend = isAlreadyFriend,
-                        onRemoveFriendClick = {}
+                        FriendSuggestionCard(
+                            user = user,
+                            onAddFriendClick = { onAddFriend(user.id) },
+                            isAlreadyFriend = isAlreadyFriend,
+                            onRemoveFriendClick = {},
+                            showButton = false
+                        )
+                        Spacer(Modifier.width(10.dp))
+                    }
+                }
+            }else{
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(100.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "No Friends Yet",
+                        color = Color.Gray,
+                        textAlign = TextAlign.Center,
                     )
                 }
             }
@@ -238,6 +259,7 @@ fun ProfileScreenPreview(){
     ProfileScreenContent(
         loggedAccount = DummyUsersData().users[0],
         allUserExceptMe = DummyUsersData().users,
+        allMyFriends = emptyList(),
         isFriend = {false},
         onAddFriend = {},
         allWorkouts = DummyWorkoutsData().workouts,

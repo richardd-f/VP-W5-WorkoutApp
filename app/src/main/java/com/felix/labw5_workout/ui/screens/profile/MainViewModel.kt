@@ -26,6 +26,9 @@ class MainViewModel() : ViewModel() {
     fun getAllUserExceptMe(): List<UserModel> {
         return allUser.filter { it.id != _loggedAccount.value?.id }
     }
+    fun getAllMyFriends(): List<UserModel> {
+        return _loggedAccount.value?.friends ?: emptyList()
+    }
 
     fun addFriend(friendId: Int) {
         val friend = allUser.find { it.id == friendId } ?: return

@@ -35,7 +35,8 @@ fun FriendSuggestionCard(
     onAddFriendClick: () -> Unit,
     onRemoveFriendClick: () -> Unit,
     isAlreadyFriend: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    showButton: Boolean = true
 ) {
     val name: String = user.name
     val age: Int = user.age
@@ -97,22 +98,24 @@ fun FriendSuggestionCard(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Add / Remove Friend Button
-            Button(
-                onClick = {
-                    if (isAlreadyFriend) onRemoveFriendClick() else onAddFriendClick()
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = if (isAlreadyFriend) Color(0xFFE74C3C) else Color(0xFF55B9E1),
-                    disabledContainerColor = Color.Gray
-                ),
-                shape = RoundedCornerShape(50)
-            ) {
-                Text(
-                    text = if (isAlreadyFriend) "Unfriend" else "Add Friend",
-                    color = Color.White,
-                    fontWeight = FontWeight.SemiBold
-                )
+            // Add / Remove Friend Button (if showButton == false -> hide button
+            if(showButton){
+                Button(
+                    onClick = {
+                        if (isAlreadyFriend) onRemoveFriendClick() else onAddFriendClick()
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = if (isAlreadyFriend) Color(0xFFE74C3C) else Color(0xFF55B9E1),
+                        disabledContainerColor = Color.Gray
+                    ),
+                    shape = RoundedCornerShape(50),
+                ) {
+                    Text(
+                        text = if (isAlreadyFriend) "Unfriend" else "Add Friend",
+                        color = Color.White,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                }
             }
         }
     }
