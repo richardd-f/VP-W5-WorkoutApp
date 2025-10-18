@@ -13,7 +13,7 @@ class WorkoutModel (
         Strength(text = "Strength"),
         LightCardio(text = "Light Cardio")
     }
-    val imageRes: Int = when(category){
+    var imageRes: Int = when(category){
         Category.Flexibility -> R.drawable.stretching
         Category.Cardio -> R.drawable.run
         Category.Strength -> R.drawable.deadlift
